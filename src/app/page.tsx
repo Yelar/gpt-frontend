@@ -27,7 +27,7 @@ export default function Home() {
       conversation += `Keep in mind context. Answer to this:\n###\n ${prompt}.`
       sendMessage(conversation);
       try {
-        const response = await axios.post(`http://localhost:8080/api/v1/addMessage`, {
+        const response = await axios.post(`http://gpt-backend-dgfn.onrender.com/api/v1/addMessage`, {
           message: "User: " + prompt,
         });
         console.log('Message posted successfully:', response.data);
@@ -42,7 +42,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<any[]>(`http://localhost:8080/api/v1/getMessages`);
+        const response = await axios.get<any[]>(`http://gpt-backend-dgfn.onrender.com/api/v1/getMessages`);
         let tmp = [];
         for (let i = 0; i < response.data.length; i++) {
           tmp.push(response.data[i].message);
